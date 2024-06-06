@@ -2,7 +2,6 @@ import { useState } from 'react'
 import axios from 'axios'
 
 const endpoint = '/api/v4/'
-// const token = 'e6b91cce9d4b4a04bca3f90ba325de5d'
 
 function useExternal() {
   const [exData, setExData] = useState()
