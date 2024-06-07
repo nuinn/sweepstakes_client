@@ -1,39 +1,34 @@
 import { useEffect, useState } from 'react'
 import useApi from './hooks/useApi.js'
 import useExternal from './hooks/useExternal.js'
+import LeagueInput from './components/LeagueInput/LeagueInput.jsx'
+import PlayerHandler from './components/PlayerHandler/PlayerHandler.jsx'
+import PlayerInput from './components/PlayerInput/PlayerInput.jsx'
+
 import './App.css'
 
 function App() {
-  const { getData, data, isLoading, error } = useApi()
-  const { getExData, exData, isExLoading } = useExternal()
+  const [league, setLeague] = useState()
+  const [players, setPlayers] = useState([])
 
   useEffect(() => {
-    getData({ route: 'teams' })
-  }, [])
-
-  // useEffect(() => {
-  //   getExData({ route: 'competitions/EC/teams' })
-  // }, [])
+    if (localStorage.data) {
+      setLeague(JSON.parse(localStorage.data))
+    }
+  }, [localStorage])
 
   useEffect(() => {
-    data && console.log(data)
-    error && console.log(error)
-  }, [data, error])
-
-
-  useEffect(() => {
-    exData && console.log(exData)
-  }, [exData])
-
+    console.log(league)
+  }, [league])
 
   return (
     <>
-      {isExLoading && <p>Hi</p>}
-      {data && data.map((team) =>
-        <p key={team.appId}>{team.name}</p>
-      )
+      {!localStorage.data &&
+       <LeagueInput />
       }
-      {/* {exData && <p>{JSON.stringify(exData)}</p>} */}
+      {!!league && league.open &&
+        <PlayerHandler leagueId ={league._id} />
+      }
     </>
   )
 }
