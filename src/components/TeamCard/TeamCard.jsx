@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import useExternal from '../../hooks/useExternal'
 import styled from "styled-components"
 
@@ -12,6 +12,7 @@ const StyledTeamCard = styled.div`
 
 function TeamCard(props) {
   const { team } = props
+  const [teamData, setTeamData] = useState(null)
   const { exData, exError, isExLoading, getExData } = useExternal()
 
   useEffect(() => {
@@ -21,14 +22,14 @@ function TeamCard(props) {
   }, [])
 
   useEffect(() => {
-    exData && console.log('exData', exData)
+    exData && setTeamData(exData)
   }, [exData, exError])
 
   return (
     <>
-      {exData &&
+      {teamData &&
         <StyledTeamCard>
-          <img src={exData.crest} alt="" />
+          <img src={teamData.crest} alt="" />
           <p>{`${team.ranking} ${team.name}`}</p>
         </StyledTeamCard>
       }

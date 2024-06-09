@@ -18,8 +18,9 @@ function FinaliseLeague(props) {
 
   useEffect(() => {
     if (data) {
-      localStorage.data = JSON.stringify(data)
+      console.log(data)
       setLeague(data)
+      localStorage.data = JSON.stringify(data)
     }
     error && console.log('error', error)
   }, [data, error])
