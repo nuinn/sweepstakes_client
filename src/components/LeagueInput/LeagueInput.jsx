@@ -7,22 +7,21 @@ const StyledLeagueInput = styled.div`
   flex-direction: column;
   gap: 12px;
 
-
   & .inputButton {
     cursor: pointer;
     border: 1px solid black;
   }
-
 `
 
 function LeagueInput(props) {
-  const { league, setLeague } = props
+  const { setLeague } = props
   const [leagueName, setLeagueName] = useState('')
   const { getData, data, error, isLoading } = useApi()
 
   useEffect(() => {
     if (data) {
       localStorage.data = JSON.stringify(data)
+      setLeague(data)
     }
     error && console.log('error', error)
   }, [data, error])
@@ -36,8 +35,6 @@ function LeagueInput(props) {
       route: `leagues/${leagueName}`
     })
   }
-
-
 
   return (
     <>
