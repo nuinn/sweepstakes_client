@@ -5,14 +5,15 @@ import useApi from "../../hooks/useApi"
 const StyledDelete = styled.div`
   width: 18px;
   height: 18px;
-  background-color: red;
+  background-color: var(--red);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 18px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 4px;
 `
 
 function Delete(props) {
@@ -32,7 +33,7 @@ function Delete(props) {
 
   return (
     <StyledDelete onClick={ () => handleDelete({ _id }) }>
-      <p>x</p>
+      <p>✕</p>
     </StyledDelete>
 
   )

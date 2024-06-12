@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import useApi from "../../hooks/useApi"
-import useToggle from "../../hooks/useToggle.js"
+import useExternal from "../../hooks/useExternal.js"
 import DrawTeamCard from "../DrawTeamCard/DrawTeamCard.jsx"
 import TeamCard from "../TeamCard/TeamCard.jsx"
 import UpdatePlayer from "../UpdatePlayer/UpdatePlayer.jsx"
+import DrawComplete from "../DrawComplete/DrawComplete.jsx"
 import StyledButton from "../Styled/Button.js"
 import generateRandomNumber from '../../services/generateRandomNumber.js'
 
@@ -19,10 +20,14 @@ function Draw(props) {
   const [buttonState, setButtonState] = useState('draw')
 
   const { getData, data, error, isLoading } = useApi()
+  const { exData, exError, isExLoading, getExData } = useExternal()
 
   useEffect(() => {
     getData({
       route: 'teams'
+    })
+    getExData({
+      route: 'competitions/EC/teams'
     })
   }, [])
 
@@ -95,16 +100,18 @@ function Draw(props) {
 
   return (
     <>
-      <div>
+
         {!draw &&
+
           <StyledButton onClick={startDraw}>Start Draw!</StyledButton>
+
         }
-        {teams.length && !draw && teams.map((team) =>
+        {/* {teams.length && !draw && teams.map((team) =>
           <DrawTeamCard
             key={team.name}
             team={team}
           />
-        )}
+        )} */}
         {draw && !!undrawnTeams.length &&
           <>
             <h1>{ wildcards ? 'Wildcard draw' : `Pot ${pots} draw`}</h1>
@@ -124,8 +131,13 @@ function Draw(props) {
             }
           </>
         }
-      { draw && !undrawnTeams.length && <h1>Draw complete!</h1>}
-      </div>
+      { draw && !undrawnTeams.length &&
+        <>
+          <StyledButton>Go live!</StyledButton>
+          <DrawComplete api={exData}/>
+        </>
+      }
+
     </>
   )
 }

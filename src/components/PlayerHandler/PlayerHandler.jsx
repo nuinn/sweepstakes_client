@@ -7,7 +7,7 @@ import Delete from "../Delete/Delete.jsx"
 const StyledPlayerHandler = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 `
 
 const StyledPlayerHandlerCard = styled.div`
@@ -16,9 +16,11 @@ const StyledPlayerHandlerCard = styled.div`
   align-items: center;
   width: 200px;
   height: 24px;
-  background-color: black;
+  background-color: var(--blue);
   color: white;
   padding: 8px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `
 
 function PlayerHandler(props) {
