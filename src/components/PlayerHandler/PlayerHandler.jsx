@@ -8,6 +8,15 @@ const StyledPlayerHandler = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  & .containerDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 300px;
+    width: 100%;
+    gap: 12px;
+  }
 `
 
 const StyledPlayerHandlerCard = styled.div`
@@ -40,6 +49,7 @@ function PlayerHandler(props) {
   return (
     <>
       <StyledPlayerHandler>
+        <div className="containerDiv">
         {data && data.map((player, i) =>
           <StyledPlayerHandlerCard key={player._id}>
             {`${i+1}. ${player.name}`}
@@ -49,6 +59,7 @@ function PlayerHandler(props) {
             />
           </StyledPlayerHandlerCard>)
         }
+        </div>
         <PlayerInput leagueId={leagueId} getPlayers={getPlayers}/>
       </StyledPlayerHandler>
     </>

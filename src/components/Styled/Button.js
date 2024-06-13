@@ -4,8 +4,8 @@ const StyledButton = styled.div`
   height: 38px;
   width: 200px;
   color: white;
-  background-color: var(--green);
-  margin: 8px;
+  background-color: ${props => props.$bgcolor || "var(--green)"};
+  margin: 24px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -13,10 +13,10 @@ const StyledButton = styled.div`
   border-radius: 100px;
   font-weight: 600;
   justify-self: center;
-  position: fixed;
-  bottom: 20%;
+  // position: fixed;
+  // bottom: 10px;
   transition: .2s;
-  z-index: 900;
+  z-index: 1001;
 
   &:active, &:hover {
     transform: scale(0.95);

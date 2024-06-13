@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import styled from "styled-components"
 import useApi from "../../hooks/useApi"
 import useExternal from "../../hooks/useExternal.js"
 import DrawTeamCard from "../DrawTeamCard/DrawTeamCard.jsx"
@@ -6,7 +7,17 @@ import TeamCard from "../TeamCard/TeamCard.jsx"
 import UpdatePlayer from "../UpdatePlayer/UpdatePlayer.jsx"
 import DrawComplete from "../DrawComplete/DrawComplete.jsx"
 import StyledButton from "../Styled/Button.js"
+import StyledDrawContainer from "./styled/DrawContainer.js"
 import generateRandomNumber from '../../services/generateRandomNumber.js'
+
+const StyledTeamsContainer = styled.div`
+  height: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+`
 
 function Draw(props) {
   const { players } = props
@@ -102,34 +113,45 @@ function Draw(props) {
     <>
 
         {!draw &&
-
-          <StyledButton onClick={startDraw}>Start Draw!</StyledButton>
-
-        }
-        {/* {teams.length && !draw && teams.map((team) =>
-          <DrawTeamCard
-            key={team.name}
-            team={team}
-          />
-        )} */}
-        {draw && !!undrawnTeams.length &&
           <>
-            <h1>{ wildcards ? 'Wildcard draw' : `Pot ${pots} draw`}</h1>
-            { buttonState !== 'next' && <h3>{ wildcards ? `${wildcards} remaining` : `${(players.length-livePlayers.length)+1} of ${players.length}`}</h3>}
-            { buttonState !== 'next' && <TeamCard team={undrawnTeams[0]} />}
-            { buttonState !== 'next' && drawnPlayer.name && <p>{`${drawnPlayer.name}!`}</p>}
-            <StyledButton
-              onClick={ buttonHandler }>
-                { buttonState }
-            </StyledButton>
-            { buttonState === 'next' &&
-              <UpdatePlayer
-                team={undrawnTeams[0].apiId}
-                player={drawnPlayer._id}
-                wildcard={!!wildcards}
-              />
-            }
+            <StyledButton onClick={startDraw}>Start Draw!</StyledButton>
+            <StyledTeamsContainer>
+              {!!teams.length && !draw && exData &&
+                teams.map((team) =>
+                  <TeamCard
+                    key={team.name}
+                    team={team}
+                    api={exData}
+                  />
+              )}
+            </StyledTeamsContainer>
           </>
+        }
+        {draw && !!undrawnTeams.length &&
+          <StyledDrawContainer>
+            <div className="title">
+              <h1>{ wildcards ? 'Wildcard draw' : `Pot ${pots} draw`}</h1>
+              { buttonState !== 'next' && <h3>{ wildcards ? `${wildcards} remaining` : `${(players.length-livePlayers.length)+1} of ${players.length}`}</h3>}
+            </div>
+            { buttonState !== 'next' && <TeamCard api={exData} team={undrawnTeams[0]} />}
+            <div className="name">
+              <p className={(buttonState !== 'next' && drawnPlayer.name) ? 'fadeIn' : ''}>
+                {(buttonState !== 'next' && drawnPlayer.name) ? `${drawnPlayer.name}!` : '\u00A0'}
+              </p>
+              { buttonState === 'next' &&
+                <UpdatePlayer
+                  team={undrawnTeams[0].apiId}
+                  player={drawnPlayer._id}
+                  wildcard={!!wildcards}
+                  api={exData}
+                />
+              }
+              <StyledButton $bgcolor='var(--red)'
+                onClick={ buttonHandler }>
+                  { buttonState }
+              </StyledButton>
+            </div>
+          </StyledDrawContainer>
         }
       { draw && !undrawnTeams.length &&
         <>
