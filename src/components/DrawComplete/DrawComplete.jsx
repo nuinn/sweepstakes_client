@@ -18,13 +18,13 @@ const StyledContainer = styled.div`
 
 
 function DrawComplete(props) {
-  const { api } = props
-  console.log('api', api)
+  const { api, leagueId } = props
+  console.log('leagueId', leagueId)
   const { getData, data, error, isLoading } = useApi();
 
   useEffect(() => {
     getData({
-      route: 'players'
+      route: `players/${leagueId}`
     })
   }, [])
 
