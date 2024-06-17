@@ -14,6 +14,7 @@ const StyledContainer = styled.div`
   padding: 25px;
   box-sizing: border-box;
   gap: 8px;
+  padding-top: 68px;
 `
 
 

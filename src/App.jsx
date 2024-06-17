@@ -29,8 +29,6 @@ function App() {
   }, [])
 
   return (
-    <>
-    <Navbar />
     <StyledWrap>
       {!localStorage.data &&
        <LeagueInput setLeague={setLeague}/>
@@ -45,11 +43,9 @@ function App() {
         <Draw players={league.players} leagueId={league._id}/>
       }
       {!!league && league.live &&
-        <League />
+        <League leagueId={league._id} />
       }
-
     </StyledWrap>
-    </>
   )
 }
 

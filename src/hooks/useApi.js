@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-const endpoint = 'http://localhost:3000/';
+// const endpoint = 'http://localhost:3000/';
+const endpoint = 'https://sweepstakes-server.onrender.com/';
 
 function useApi() {
   const [data, setData] = useState()
