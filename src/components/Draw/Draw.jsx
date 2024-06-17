@@ -20,7 +20,7 @@ const StyledTeamsContainer = styled.div`
 `
 
 function Draw(props) {
-  const { players } = props
+  const { players, leagueId } = props
   const [teams, setTeams] = useState([])
   const [draw, setDraw] = useState(false)
   const [undrawnTeams, setUndrawnTeams] = useState([])
@@ -134,11 +134,7 @@ function Draw(props) {
               { buttonState !== 'next' && <h3>{ wildcards ? `${wildcards} remaining` : `${(players.length-livePlayers.length)+1} of ${players.length}`}</h3>}
             </div>
             { buttonState !== 'next' && <TeamCard api={exData} team={undrawnTeams[0]} />}
-            <div className="name">
-              <p className={(buttonState !== 'next' && drawnPlayer.name) ? 'fadeIn' : ''}>
-                {(buttonState !== 'next' && drawnPlayer.name) ? `${drawnPlayer.name}!` : '\u00A0'}
-              </p>
-              { buttonState === 'next' &&
+            { buttonState === 'next' &&
                 <UpdatePlayer
                   team={undrawnTeams[0].apiId}
                   player={drawnPlayer._id}
@@ -146,6 +142,10 @@ function Draw(props) {
                   api={exData}
                 />
               }
+            <div className="name">
+              <p className={(buttonState !== 'next' && drawnPlayer.name) ? 'fadeIn' : ''}>
+                {(buttonState !== 'next' && drawnPlayer.name) ? `${drawnPlayer.name}` : '\u00A0'}
+              </p>
               <StyledButton $bgcolor='var(--red)'
                 onClick={ buttonHandler }>
                   { buttonState }
@@ -156,7 +156,7 @@ function Draw(props) {
       { draw && !undrawnTeams.length &&
         <>
           <StyledButton>Go live!</StyledButton>
-          <DrawComplete api={exData}/>
+          <DrawComplete api={exData} leagueId={leagueId} />
         </>
       }
 

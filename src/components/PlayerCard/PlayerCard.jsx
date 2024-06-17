@@ -32,8 +32,32 @@ function PlayerCard(props) {
           <td className='points'>{(player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0))}</td>
         </tr>
         {player.teamsData && !!player.teamsData.length &&
-          player.teamsData
-            .sort((a,b) => (((b.group.won + b.KO.won)*3)+(b.group.drawn + b.KO.drawn)-((a.group.won + a.KO.won)*3)+(a.group.drawn + a.KO.drawn)))
+          player.teamsData.sort((a, b) => {
+            // Calculate points for each team
+            const pointsA = (a.group.won + a.KO.won) * 3 + (a.group.drawn + a.KO.drawn);
+            const pointsB = (b.group.won + b.KO.won) * 3 + (b.group.drawn + b.KO.drawn);
+
+            // Calculate goal difference for each team
+            const goalDifferenceA = (a.group.GF + a.KO.GF) - (a.group.GA + a.KO.GA);
+            const goalDifferenceB = (b.group.GF + b.KO.GF) - (b.group.GA + b.KO.GA);
+
+            // Calculate total goals for each team
+            const goalsForA = a.group.GF + a.KO.GF;
+            const goalsForB = b.group.GF + b.KO.GF;
+
+            // Compare points first
+            if (pointsA !== pointsB) {
+                return pointsB - pointsA;
+            }
+
+            // If points are the same, compare goal difference
+            if (goalDifferenceA !== goalDifferenceB) {
+                return goalDifferenceB - goalDifferenceA;
+            }
+
+            // If goal difference is the same, compare goals for
+            return goalsForB - goalsForA;
+        })
             .map((team) =>
             <tr key={team.name}>
               {api && <img src={api.teams.filter((apiTeam) => apiTeam.id === team.apiId)[0].crest}></img>}

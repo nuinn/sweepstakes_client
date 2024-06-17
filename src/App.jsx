@@ -5,6 +5,7 @@ import LeagueInput from './components/LeagueInput/LeagueInput.jsx'
 import PlayerHandler from './components/PlayerHandler/PlayerHandler.jsx'
 import FinaliseLeague from './components/FinaliseLeague/FinaliseLeague.jsx'
 import Draw from './components/Draw/Draw.jsx'
+import League from './components/League/League.jsx'
 import './App.css'
 
 const StyledWrap = styled.div`
@@ -28,8 +29,6 @@ function App() {
   }, [])
 
   return (
-    <>
-    <Navbar />
     <StyledWrap>
       {!localStorage.data &&
        <LeagueInput setLeague={setLeague}/>
@@ -41,10 +40,12 @@ function App() {
         </>
       }
       {!!league && !league.open && !league.live &&
-        <Draw players={league.players}/>
+        <Draw players={league.players} leagueId={league._id}/>
+      }
+      {!!league && league.live &&
+        <League leagueId={league._id} />
       }
     </StyledWrap>
-    </>
   )
 }
 

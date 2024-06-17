@@ -14,17 +14,18 @@ const StyledContainer = styled.div`
   padding: 25px;
   box-sizing: border-box;
   gap: 8px;
+  padding-top: 68px;
 `
 
 
 function DrawComplete(props) {
-  const { api } = props
-  console.log('api', api)
+  const { api, leagueId } = props
+  console.log('leagueId', leagueId)
   const { getData, data, error, isLoading } = useApi();
 
   useEffect(() => {
     getData({
-      route: 'players'
+      route: `players/${leagueId}`
     })
   }, [])
 
