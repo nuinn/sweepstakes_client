@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const endpoint = '/api/v4/'
+// const endpoint = '/api/v4/'
+const endpoint = 'https://api.football-data.org/api/v4/'
 
 function useExternal() {
   const [exData, setExData] = useState()
