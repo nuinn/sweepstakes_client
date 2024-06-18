@@ -7,15 +7,10 @@ function League(props) {
   const { getData, data, error, isLoading } = useApi()
 
   useEffect(() => {
-    console.log('leagueId', leagueId)
     getData({
       route: `players/${leagueId}`
     })
   }, [])
-
-  useEffect(() => {
-    data && console.log(data)
-  }, [data])
 
   return (
     <>
