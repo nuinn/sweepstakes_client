@@ -6,6 +6,7 @@ import PlayerHandler from './components/PlayerHandler/PlayerHandler.jsx'
 import FinaliseLeague from './components/FinaliseLeague/FinaliseLeague.jsx'
 import Draw from './components/Draw/Draw.jsx'
 import League from './components/League/League.jsx'
+import NextFixture from './components/NextFixture/NextFixture.jsx'
 import './App.css'
 
 const StyledWrap = styled.div`
@@ -43,7 +44,10 @@ function App() {
         <Draw players={league.players} leagueId={league._id}/>
       }
       {!!league && league.live &&
-        <League leagueId={league._id} />
+        <>
+          <NextFixture />
+          <League leagueId={league._id} />
+        </>
       }
     </StyledWrap>
   )
