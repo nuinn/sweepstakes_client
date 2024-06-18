@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      '/api': 'https://sweepstakes-server.onrender.com/'
+      // '/api': 'https://sweepstakes-server.onrender.com/'
     }
   },
   plugins: [react()],

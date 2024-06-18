@@ -8,11 +8,22 @@ function Players() {
   const { getData, data, error, isLoading } = useApi()
   const { exData, exError, isExLoading, getExData } = useExternal()
 
+  // useEffect(() => {
+  //   getExData({
+  //     route: 'competitions/EC/teams'
+  //   })
+  // }, [])
+
   useEffect(() => {
-    getExData({
-      route: 'competitions/EC/teams'
+    getData({
+      route: 'api/v4/competitions/EC/teams'
     })
   }, [])
+
+  useEffect(() => {
+    data && console.log('useApi data', data);
+    error && console.error(error)
+  }, [data, error])
 
   // useEffect(() => {
   //   console.log('contactApi')
@@ -22,8 +33,8 @@ function Players() {
 
   return (
     <>
-      {localStorage.data && exData &&
-        <DrawComplete leagueId={JSON.parse(localStorage.data)._id} api={exData} />
+      {localStorage.data && data &&
+        <DrawComplete leagueId={JSON.parse(localStorage.data)._id} api={data} />
       }
     </>
   )
