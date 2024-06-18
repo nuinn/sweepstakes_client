@@ -15,6 +15,7 @@ function Players() {
   }, [])
 
   useEffect(() => {
+    console.log('contactApi')
     const url = 'https://api.football-data.org/v4/competitions/EC/teams'
     contactApi(url)
   }, [])
