@@ -8,17 +8,17 @@ function Players() {
   const { getData, data, error, isLoading } = useApi()
   const { exData, exError, isExLoading, getExData } = useExternal()
 
-  // useEffect(() => {
-  //   getExData({
-  //     route: 'competitions/EC/teams'
-  //   })
-  // }, [])
-
   useEffect(() => {
-    console.log('contactApi')
-    const url = 'https://api.football-data.org/v4/competitions/EC/teams'
-    contactApi(url)
+    getExData({
+      route: 'competitions/EC/teams'
+    })
   }, [])
+
+  // useEffect(() => {
+  //   console.log('contactApi')
+  //   const url = 'https://api.football-data.org/v4/competitions/EC/teams'
+  //   contactApi(url)
+  // }, [])
 
   return (
     <>

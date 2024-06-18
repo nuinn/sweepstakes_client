@@ -16,6 +16,8 @@ function useExternal() {
     const url = endpoint + route
     axios.get(url)
       .then(response => {
+        console.log('axios', axios)
+        console.log('url', url)
         console.log('axios response', response)
         setExData(response.data)
         setIsExLoading(false)
