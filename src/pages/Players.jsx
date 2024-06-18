@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import useApi from "../hooks/useApi"
 import useExternal from "../hooks/useExternal"
 import DrawComplete from "../components/DrawComplete/DrawComplete.jsx"
+import contactApi from "../services/contactApi.js"
 
 function Players() {
   const { getData, data, error, isLoading } = useApi()
@@ -11,6 +12,11 @@ function Players() {
     getExData({
       route: 'competitions/EC/teams'
     })
+  }, [])
+
+  useEffect(() => {
+    const url = 'https://api.football-data.org/v4/competitions/EC/teams'
+    contactApi(url)
   }, [])
 
   return (
