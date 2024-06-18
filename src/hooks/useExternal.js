@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const endpoint = 'https://sweepstakes-server.onrender.com/api/v4/'
+const endpoint = 'api/v4/'
 // const endpoint = 'https://api.football-data.org/api/v4/'
 
 function useExternal() {
@@ -16,6 +16,7 @@ function useExternal() {
     const url = endpoint + route
     axios.get(url)
       .then(response => {
+        console.log('axios response', response)
         setExData(response.data)
         setIsExLoading(false)
       })
