@@ -8,11 +8,11 @@ function Players() {
   const { getData, data, error, isLoading } = useApi()
   const { exData, exError, isExLoading, getExData } = useExternal()
 
-  useEffect(() => {
-    getExData({
-      route: 'competitions/EC/teams'
-    })
-  }, [])
+  // useEffect(() => {
+  //   getExData({
+  //     route: 'competitions/EC/teams'
+  //   })
+  // }, [])
 
   useEffect(() => {
     console.log('contactApi')
