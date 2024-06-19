@@ -17,6 +17,7 @@ function League(props) {
       { data &&
         <StyledLeague>
           <table>
+            <tbody>
             <tr>
               <th className='pos'>Pos</th>
               <th className='name'>Name</th>
@@ -51,7 +52,7 @@ function League(props) {
 
               })
               .map((player, i) =>
-              <tr>
+              <tr key={player.name}>
                 <td className='pos'>{i+1}</td>
                 <td className='name nameData'>{player.name}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.played, 0)}</td>
@@ -64,6 +65,7 @@ function League(props) {
                 <td className='points'>{(player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0))}</td>
               </tr>
             )}
+            </tbody>
           </table>
         </StyledLeague>
       }

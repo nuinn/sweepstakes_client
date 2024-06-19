@@ -31,6 +31,11 @@ const StyledNavbar = styled.div`
       font-weight: 300;
       font-size: 22px;
       cursor: pointer;
+      transition: 1s ease;
+
+      &:hover {
+        color: var(--blue);
+      }
     }
   }
 
@@ -58,7 +63,7 @@ export default function Navbar() {
       </div>
       <div className="links">
         <p onClick={ () => navigate('/players') }>Players</p>
-        <p>Fixtures</p>
+        <p onClick={ () => navigate('/fixtures') }>Fixtures</p>
       </div>
     </StyledNavbar>
   )
