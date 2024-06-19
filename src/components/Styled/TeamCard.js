@@ -4,7 +4,7 @@ const TeamCard = styled.div`
   display: flex;
   align-items: center;
   // gap: 20px;
-  width: 300px;
+  width: 220px;
   height: 80px;
   background-image: ${ props => props.$bgimage || 'linear-gradient(to right top, #2b2c36, #2e344f, #2d3c69, #244584, #004ea0)'};
   color: var(--white);

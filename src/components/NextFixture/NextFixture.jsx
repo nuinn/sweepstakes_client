@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import useApi from "../../hooks/useApi"
 import Fixture from '../Fixture/Fixture.jsx'
 
-function NextFixture() {
+function NextFixture(props) {
+  const { leagueId } = props
   const { data, getData } = useApi()
   const [nextFixture, setNextFixture] = useState(null)
 
@@ -14,13 +15,13 @@ function NextFixture() {
 
   useEffect(() => {
     data && setNextFixture(data.matches[0])
-    data && console.log(data.matches[0].homeTeam)
+    data && console.log(nextFixture)
   }, [data])
 
   return (
     <>
       {nextFixture &&
-        <Fixture data={nextFixture}/>
+        <Fixture fixture={nextFixture} leagueId={leagueId}/>
       }
     </>
   )

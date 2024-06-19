@@ -45,7 +45,7 @@ function App() {
       }
       {!!league && league.live &&
         <>
-          <NextFixture />
+          <NextFixture leagueId={league._id} />
           <League leagueId={league._id} />
         </>
       }
