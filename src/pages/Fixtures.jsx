@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import useApi from "../hooks/useApi"
+import Spinner from "../components/Spinner/Spinner.jsx"
 import Fixture from "../components/Fixture/Fixture"
 import StyledWrap from "../components/Styled/Wrap.js"
 
@@ -19,6 +20,7 @@ export default function Fixtures() {
   return (
     <>
       <StyledWrap>
+      { isLoading && <Spinner />}
       {data &&
         data.matches
           .filter((match) => match.stage.includes("GROUP"))

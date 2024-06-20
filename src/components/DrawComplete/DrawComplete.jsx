@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import styled from "styled-components";
 import useApi from "../../hooks/useApi"
 import PlayerCard from "../PlayerCard/PlayerCard.jsx"
+import Spinner from "../Spinner/Spinner.jsx";
 import StyledButton from "../Styled/Button.js";
 
 const StyledContainer = styled.div`
@@ -35,6 +36,7 @@ function DrawComplete(props) {
 
   return (
     <StyledContainer>
+      {isLoading && <Spinner />}
       {data && data.map((player) =>
         <PlayerCard player={player} api={api}/>
       )}
