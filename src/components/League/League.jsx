@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import useApi from '../../hooks/useApi.js'
+import Spinner from '../Spinner/Spinner.jsx'
 import StyledLeague from '../Styled/League.js'
 
 function League(props) {
@@ -14,6 +15,7 @@ function League(props) {
 
   return (
     <>
+      { isLoading && <Spinner />}
       { data &&
         <StyledLeague>
           <table>
