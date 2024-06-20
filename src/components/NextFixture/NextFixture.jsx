@@ -9,7 +9,7 @@ function NextFixture(props) {
 
   useEffect(() => {
     getData({
-      route: 'api/v4/competitions/EC/matches?status=SCHEDULED'
+      route: 'api/v4/competitions/EC/matches?status=IN_PLAY&SCHEDULED'
     })
   }, [])
 
