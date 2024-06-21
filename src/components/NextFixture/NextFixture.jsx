@@ -9,13 +9,12 @@ function NextFixture(props) {
 
   useEffect(() => {
     getData({
-      route: 'api/v4/competitions/EC/matches?status=IN_PLAY&SCHEDULED'
+      route: 'api/v4/competitions/EC/matches?status=IN_PLAY,SCHEDULED'
     })
   }, [])
 
   useEffect(() => {
     data && setNextFixture(data.matches[0])
-    data && console.log(nextFixture)
   }, [data])
 
   return (
