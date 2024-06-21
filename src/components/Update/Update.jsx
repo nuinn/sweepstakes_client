@@ -9,7 +9,7 @@ export default function Update(props) {
     getData({
       route: `leagues/update/${league._id}`,
       method: 'PATCH',
-      body: unregisteredMatches
+      body: {unregisteredMatches}
     })
   }, [])
 

@@ -27,22 +27,20 @@ export default function CheckForUpdates(props) {
   useEffect(() => {
     if (completedMatchesIds) {
       const unregisteredMatchesIds = completedMatchesIds.filter((match) => !league.matches.includes(match))
-      const unregisteredMatchesData = {}
+      const unregisteredMatchesData = []
       for (let i = 0; i < unregisteredMatchesIds.length; i++) {
         const unregisteredMatchId = unregisteredMatchesIds[i]
         // completedMatches.map((completedMatch) => completedMatch.id === unregisteredMatchId && )
         for (let j = 0; j < completedMatches.length; j++) {
           const completedMatch = completedMatches[j]
           if (completedMatch.id === unregisteredMatchId) {
-            unregisteredMatchesData[unregisteredMatchId] = completedMatch
+            unregisteredMatchesData.push(completedMatch)
           }
         }
       }
       setUnregisteredMatches(unregisteredMatchesData)
     }
   }, [completedMatches])
-
-
 
   return (
     <>
