@@ -2,8 +2,8 @@ import { useEffect } from "react"
 import useApi from "../../hooks/useApi"
 
 export default function Update(props) {
-  const { league, setLeague, unregisteredMatches } = props
-  const { data, getData, error } = useApi()
+  const { league, unregisteredMatches } = props
+  const { getData } = useApi()
 
   useEffect(() => {
     getData({
@@ -12,6 +12,4 @@ export default function Update(props) {
       body: {unregisteredMatches}
     })
   }, [])
-
-
 }

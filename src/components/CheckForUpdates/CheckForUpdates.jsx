@@ -3,14 +3,13 @@ import useApi from "../../hooks/useApi"
 import Update from '../Update/Update.jsx'
 
 export default function CheckForUpdates(props) {
-  const { league, setLeague } = props
+  const { league } = props
   const { data, getData, isLoading, error } = useApi()
   const [completedMatches, setCompletedMatches] = useState(null)
   const [completedMatchesIds, setCompletedMatchesIds] = useState(null)
   const [unregisteredMatches, setUnregisteredMatches] = useState(null)
 
   useEffect(() => {
-    console.log('league', league)
     getData({
       route: 'api/v4/competitions/EC/matches?status=FINISHED'
     })
@@ -42,12 +41,13 @@ export default function CheckForUpdates(props) {
     }
   }, [completedMatches])
 
+
+
   return (
     <>
       { unregisteredMatches &&
       <Update
         league={league}
-        setLeague={setLeague}
         unregisteredMatches={unregisteredMatches}
       />
       }
