@@ -35,11 +35,11 @@ function Fixture(props) {
               finished={fixture.status === "FINISHED"}
             />
             <p className={ fixture.status === "IN_PLAY" ? 'score inPlay' : 'score'}>
-              { fixture.status === "FINISHED" || fixture.status === "IN_PLAY" ? `${fixture.score.fullTime.home || fixture.score.halfTime.home}` : '' }
+              { fixture.status === "FINISHED" || fixture.status === "IN_PLAY" ? `${fixture.score.fullTime.home || fixture.score.halfTime.home || 0}` : '' }
             </p>
             <p className={ fixture.status === "IN_PLAY" ? 'vs inPlay' : 'vs'}>vs</p>
             <p className={ fixture.status === "IN_PLAY" ? 'score inPlay' : 'score'}>
-              { fixture.status === "FINISHED" || fixture.status === "IN_PLAY" ? `${fixture.score.fullTime.away || fixture.score.halfTime.away}` : '' }
+              { fixture.status === "FINISHED" || fixture.status === "IN_PLAY" ? `${fixture.score.fullTime.away || fixture.score.halfTime.away || 0}` : '' }
             </p>
             <FixtureTeamCard
               team={fixture.awayTeam}
