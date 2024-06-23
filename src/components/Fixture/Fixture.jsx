@@ -6,10 +6,11 @@ import formatDate from '../../services/formatDate.js'
 import formatStage from '../../services/formatStage.js'
 
 function Fixture(props) {
-  const { fixture, leagueId } = props
+  const { fixture, leagueId, noDate } = props
   const { data, getData, isLoading, error } = useApi()
 
   useEffect(() => {
+    console.log('fixture.jsx', fixture)
     getData({
       route: `players/${leagueId}`
     })
@@ -23,11 +24,13 @@ function Fixture(props) {
   return (
     <>
       {data &&
-        <StyledFixture>
-          <div className="info">
-            <p className='date'>{ fixture.status === "IN_PLAY" ? 'Now' : formatDate(fixture.utcDate)}</p>
-            <p className='round'>{`${formatStage(fixture.group)}, Match ${fixture.matchday} of 3`}</p>
-          </div>
+        <StyledFixture $padding={noDate ? '0px 0px 20px' : '20px 0px'}>
+          { !noDate &&
+            <div className="info">
+              <p className='date'>{ fixture.status === "IN_PLAY" ? 'Now' : formatDate(fixture.utcDate)}</p>
+              <p className='round'>{`${formatStage(fixture.group)}, Match ${fixture.matchday} of 3`}</p>
+            </div>
+          }
           <div className='matchup'>
             <FixtureTeamCard
               team={fixture.homeTeam}

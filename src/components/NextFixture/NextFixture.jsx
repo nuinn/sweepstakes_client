@@ -14,12 +14,28 @@ function NextFixture(props) {
   }, [])
 
   useEffect(() => {
-    data && setNextFixture(data.matches[0])
+    data && console.log('data.matches', data.matches)
+    if (data) {
+      if (data.matches[0].matchday === 3) {
+        console.log('round 3')
+        setNextFixture('matchday 3')
+      }
+      else {
+        console.log('here')
+        data && setNextFixture(data.matches[0])
+      }
+    }
   }, [data])
 
   return (
     <>
-      {nextFixture &&
+      {nextFixture && typeof nextFixture === 'string' && data.matches &&
+        <>
+          <Fixture fixture={data.matches[0]} leagueId={leagueId} />
+          <Fixture fixture={data.matches[1]} leagueId={leagueId} noDate={true}/>
+        </>
+      }
+      {nextFixture && typeof nextFixture !== 'string' &&
         <Fixture fixture={nextFixture} leagueId={leagueId}/>
       }
     </>

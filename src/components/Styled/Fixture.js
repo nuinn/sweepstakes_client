@@ -11,7 +11,7 @@ const Fixture = styled.div`
   // background-image: linear-gradient(to left top, #dbe8f1, #a2c2dd, #6f9bca, #3f74b6, #004ea0);
   // background-image: linear-gradient(to right top, #2b2c36, #2e344f, #2d3c69, #244584, #004ea0);
   color: var(--blue);
-  padding: 20px 0px;
+  padding: ${props => props.$padding};
 
   & .info {
     width: 100%;
