@@ -59,7 +59,7 @@ function PlayerCard(props) {
             return goalsForB - goalsForA;
         })
             .map((team) =>
-            <tr key={team.name}>
+            <tr key={team.name} className={team.active ? '' : 'out'}>
               {api && <img src={api.teams.filter((apiTeam) => apiTeam.id === team.apiId)[0].crest}></img>}
               <td className='teamName'>{team.name}</td>
               <td>{team.played}</td>

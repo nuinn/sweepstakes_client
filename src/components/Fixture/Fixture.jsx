@@ -10,7 +10,6 @@ function Fixture(props) {
   const { data, getData, isLoading, error } = useApi()
 
   useEffect(() => {
-    console.log('fixture.jsx', fixture)
     getData({
       route: `players/${leagueId}`
     })

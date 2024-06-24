@@ -13,6 +13,17 @@ function League(props) {
     })
   }, [])
 
+  function getPlayerLives(player) {
+    const liveTeams = player.teamsData.filter((team) => team.active).length
+    if (!liveTeams) {
+      return 'dead'
+    }
+    if (liveTeams === 1) {
+      return 'one'
+    }
+    return ''
+  }
+
   return (
     <>
       { isLoading && <Spinner />}
@@ -54,7 +65,7 @@ function League(props) {
 
               })
               .map((player, i) =>
-              <tr key={player.name}>
+              <tr key={player.name} className={getPlayerLives(player)}>
                 <td className='pos'>{i+1}</td>
                 <td className='name nameData'>{player.name}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.played, 0)}</td>

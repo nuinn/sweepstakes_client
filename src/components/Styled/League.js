@@ -48,6 +48,14 @@ const League = styled.div`
       text-align: left;
     }
 
+    .one {
+      color: var(--yellow);
+    }
+
+    .dead {
+      color: var(--red);
+    }
+
     .nameData {
       // color: var(--green);
       font-weight: 200;

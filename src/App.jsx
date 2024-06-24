@@ -12,7 +12,7 @@ import StyledWrap from './components/Styled/Wrap.js'
 import './App.css'
 
 function App() {
-  const [league, setLeague] = useState()
+  const [league, setLeague] = useState(null)
   const { getData, data, error, isLoading } = useApi()
 
   useEffect(() => {
@@ -27,10 +27,14 @@ function App() {
     data && setLeague(data)
   }, [data, error])
 
+  useEffect(() => {
+    console.log('league', league)
+  }, [league])
+
   return (
     <StyledWrap>
       {!localStorage.data &&
-       <LeagueInput setLeague={setLeague}/>
+       <LeagueInput league={league} setLeague={setLeague}/>
       }
       {!!league && league.open &&
         <>

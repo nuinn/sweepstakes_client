@@ -21,7 +21,6 @@ const StyledContainer = styled.div`
 
 function DrawComplete(props) {
   const { api, leagueId } = props
-  console.log('leagueId', leagueId)
   const { getData, data, error, isLoading } = useApi();
 
   useEffect(() => {
@@ -31,7 +30,8 @@ function DrawComplete(props) {
   }, [])
 
   useEffect(() => {
-    data && console.log(data)
+    data && console.log('players', data)
+    api && console.log('api', api)
   }, [data])
 
   return (

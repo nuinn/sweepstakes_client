@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useApi from '../../hooks/useApi.js'
+import Spinner from '../Spinner/Spinner.jsx'
 
 const StyledLeagueInput = styled.div`
   display: flex;
@@ -45,7 +46,7 @@ const StyledLeagueInput = styled.div`
 `
 
 function LeagueInput(props) {
-  const { setLeague } = props
+  const { league, setLeague } = props
   const [leagueName, setLeagueName] = useState('')
   const { getData, data, error, isLoading } = useApi()
 
@@ -53,36 +54,48 @@ function LeagueInput(props) {
     if (data) {
       localStorage.data = JSON.stringify(data)
       setLeague(data)
+      window.location.reload()
     }
-    error && console.log('error', error)
   }, [data, error])
 
   function handleInput(e) {
     setLeagueName(e.target.value)
   }
 
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      setLeagueName(e.target.value)
+      submitHandler()
+    }
+  }
+
   function submitHandler() {
     getData({
       route: `leagues/${leagueName}`
     })
+    this.forceUpdate()
   }
 
   return (
     <>
-      <StyledLeagueInput>
-        <img src="https://upload.wikimedia.org/wikipedia/it/f/f0/UEFA_Euro_2024_Logo.png" alt="" />
-        <h3>Enter League Name</h3>
-        <input
-          type="text"
-          onChange={ handleInput }
-        />
-        <div
-          className="inputButton"
-          onClick={ submitHandler }
-        >
-          Submit
-        </div>
-      </StyledLeagueInput>
+      {isLoading && <Spinner />}
+      {!isLoading &&
+        <StyledLeagueInput>
+          <img src="https://upload.wikimedia.org/wikipedia/it/f/f0/UEFA_Euro_2024_Logo.png" alt="" />
+          <h3>Enter League Name</h3>
+          <input
+            type="text"
+            onChange={ handleInput }
+            onKeyDown={ handleKeyDown }
+          />
+          <div
+            className="inputButton"
+            onClick={ submitHandler }
+          >
+            Submit
+          </div>
+        </StyledLeagueInput>
+      }
     </>
   )
 }

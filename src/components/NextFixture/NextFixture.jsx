@@ -14,14 +14,12 @@ function NextFixture(props) {
   }, [])
 
   useEffect(() => {
-    data && console.log('data.matches', data.matches)
     if (data) {
+      console.log(data)
       if (data.matches[0].matchday === 3) {
-        console.log('round 3')
         setNextFixture('matchday 3')
       }
       else {
-        console.log('here')
         data && setNextFixture(data.matches[0])
       }
     }

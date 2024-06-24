@@ -64,6 +64,7 @@ export default function Navbar() {
       <div className="links">
         <p onClick={ () => navigate('/players') }>Players</p>
         <p onClick={ () => navigate('/fixtures') }>Fixtures</p>
+        <p onClick={ () => navigate('/rules') }>Rules</p>
       </div>
     </StyledNavbar>
   )

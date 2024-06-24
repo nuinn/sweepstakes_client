@@ -28,7 +28,7 @@ const PlayerCard = styled.div`
     width: 100%;
     height: 100%;
 
-    & .wildcard {
+    & .wildcard, .out {
       color: var(--red);
     }
 
