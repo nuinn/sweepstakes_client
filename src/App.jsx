@@ -27,10 +27,6 @@ function App() {
     data && setLeague(data)
   }, [data, error])
 
-  useEffect(() => {
-    console.log('league', league)
-  }, [league])
-
   return (
     <StyledWrap>
       {!localStorage.data &&

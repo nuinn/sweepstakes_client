@@ -7,7 +7,7 @@ const TeamCard = styled.div`
   width: 220px;
   height: 80px;
   // background-image: ${ props => props.$bgimage || 'linear-gradient(to right top, #2b2c36, #2e344f, #2d3c69, #244584, #004ea0)'};
-  background-color: var(--red);
+  background-color: ${props => props.$bgcolor || "var(--red)"};
   // background-image: linear-gradient(to right top, #2b2c36, #1d4862, #006a80, #008b7e, #00a85d);
   color: var(--white);
   border-radius: 24px;
@@ -21,6 +21,7 @@ const TeamCard = styled.div`
   }
 
 
+
   & .flag {
     width: 40%;
     height: 100%;
@@ -32,6 +33,10 @@ const TeamCard = styled.div`
       // border-radius: 24px;
       border-top-left-radius: 24px;
       border-bottom-left-radius: 24px;
+    }
+
+    & .logo {
+      object-fit: contain;
     }
   }
 

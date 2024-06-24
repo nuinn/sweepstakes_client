@@ -27,13 +27,18 @@ function Fixture(props) {
           { !noDate &&
             <div className="info">
               <p className='date'>{ fixture.status === "IN_PLAY" ? 'Now' : formatDate(fixture.utcDate)}</p>
-              <p className='round'>{`${formatStage(fixture.group)}, Match ${fixture.matchday} of 3`}</p>
+              { fixture.stage === 'GROUP_STAGE' ?
+                <p className='round'>{`${formatStage(fixture.group)}, Match ${fixture.matchday} of 3`}</p>
+                :
+                <p className='round'>{formatStage(fixture.stage)}</p>
+
+              }
             </div>
           }
           <div className='matchup'>
             <FixtureTeamCard
-              team={fixture.homeTeam}
-              player={data.filter((player) => player.teams.includes(fixture.homeTeam.id.toString()))[0]}
+              team={fixture.homeTeam || ''}
+              player={fixture.homeTeam.id !== null ? data.filter((player) => player.teams.includes(fixture.homeTeam.id.toString()))[0] : ''}
               finished={fixture.status === "FINISHED"}
             />
             <p className={ fixture.status === "IN_PLAY" ? 'score inPlay' : 'score'}>
@@ -44,8 +49,8 @@ function Fixture(props) {
               { fixture.status === "FINISHED" || fixture.status === "IN_PLAY" ? `${fixture.score.fullTime.away || fixture.score.halfTime.away || 0}` : '' }
             </p>
             <FixtureTeamCard
-              team={fixture.awayTeam}
-              player={data.filter((player) => player.teams.includes(fixture.awayTeam.id.toString()))[0]}
+              team={fixture.awayTeam || ''}
+              player={fixture.awayTeam.id !== null ? data.filter((player) => player.teams.includes(fixture.awayTeam.id.toString()))[0] : ''}
               finished={fixture.status === "FINISHED"}
             />
           </div>
