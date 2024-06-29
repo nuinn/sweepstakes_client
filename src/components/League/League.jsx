@@ -36,6 +36,7 @@ function League(props) {
               <th className='name'>Name</th>
               <th>P</th>
               <th>W</th>
+              <th>PK</th>
               <th>D</th>
               <th>L</th>
               <th>GF</th>
@@ -45,8 +46,8 @@ function League(props) {
             </tr>
             { data
               .sort((a, b) => {
-                const pointsA = (a.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(a.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0))
-                const pointsB = (b.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(b.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0))
+                const pointsA = (a.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(a.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn + team.KO.PK, 0))
+                const pointsB = (b.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(b.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn + team.KO.PK, 0))
 
                 const goalDifferenceA = (a.teamsData.reduce((sum, team) => sum + team.group.GF + team.KO.GF, 0))-(a.teamsData.reduce((sum, team) => sum + team.group.GA + team.KO.GA, 0))
                 const goalDifferenceB = (b.teamsData.reduce((sum, team) => sum + team.group.GF + team.KO.GF, 0))-(b.teamsData.reduce((sum, team) => sum + team.group.GA + team.KO.GA, 0))
@@ -70,12 +71,13 @@ function League(props) {
                 <td className='name nameData'>{player.name}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.played, 0)}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)}</td>
+                <td>{player.teamsData.reduce((sum, team) => team.KO.PK ? sum + team.KO.PK : sum, 0)}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0)}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.group.lost + team.KO.lost, 0)}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.group.GF + team.KO.GF, 0)}</td>
                 <td>{player.teamsData.reduce((sum, team) => sum + team.group.GA + team.KO.GA, 0)}</td>
                 <td>{(player.teamsData.reduce((sum, team) => sum + team.group.GF + team.KO.GF, 0))-(player.teamsData.reduce((sum, team) => sum + team.group.GA + team.KO.GA, 0))}</td>
-                <td className='points'>{(player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0))}</td>
+                <td className='points'>{(player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn + team.KO.PK, 0))}</td>
               </tr>
             )}
             </tbody>

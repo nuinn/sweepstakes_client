@@ -34,20 +34,50 @@ const Fixture = styled.div`
 
   & .matchup {
     width: 100%;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 10px;
     // gap: 10px;
+    box-sizing: border-box;
 
-    & .vs, .score {
-      font-size: 30px;
-      width: 32px;
-      text-align: center;
-    }
+    & .scoreContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      width: 96px;
 
-    & .inPlay {
-      color: var(--red);
+      & .pensContainer {
+        height: 28%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+
+      & .finalScore {
+        height: 44%;
+        display: flex;
+      }
+
+
+      & .vs, .score {
+        font-size: 30px;
+        width: 33%;
+        text-align: center;
+      }
+
+      & .inPlay {
+        color: var(--red);
+      }
+
+      & .pens {
+        font-size: 14px;
+        line-height: 16px;
+      }
+
     }
   }
 `;

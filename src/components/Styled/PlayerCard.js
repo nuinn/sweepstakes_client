@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const PlayerCard = styled.div`
   width: 420px;
-  height: 180px;
+  height: 160px;
   background-color: #2b2c36;
   background-image: linear-gradient(to right top, #2b2c36, #2e344f, #2d3c69, #244584, #004ea0);
   color: var(--white);
@@ -52,14 +52,14 @@ const PlayerCard = styled.div`
     }
 
     th {
-      width: 8%;
+      width: 7%;
       font-weight: 500;
       color: var(--white);
       font-size: 16px;
     }
 
     .teamName {
-      width: 28%;
+      width: 26%;
       text-align: left;
     }
 

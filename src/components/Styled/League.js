@@ -30,7 +30,7 @@ const League = styled.div`
     }
 
     & td {
-      width: 10%;
+      width: 9%;
       text-align: center;
       vertical-align: baseline;
     }
@@ -44,7 +44,7 @@ const League = styled.div`
     }
 
     .name {
-      width: 20%;
+      width: 18%;
       text-align: left;
     }
 

@@ -13,6 +13,7 @@ function PlayerCard(props) {
           <th></th>
           <th>P</th>
           <th>W</th>
+          <th>PK</th>
           <th>D</th>
           <th>L</th>
           <th>GF</th>
@@ -24,6 +25,7 @@ function PlayerCard(props) {
           <td className='playerName' colspan="2">{player.name}</td>
           <td>{player.teamsData.reduce((sum, team) => sum + team.played, 0)}</td>
           <td>{player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)}</td>
+          <td>{player.teamsData.reduce((sum, team) => sum + team.KO.PK, 0)}</td>
           <td>{player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0)}</td>
           <td>{player.teamsData.reduce((sum, team) => sum + team.group.lost + team.KO.lost, 0)}</td>
           <td>{player.teamsData.reduce((sum, team) => sum + team.group.GF + team.KO.GF, 0)}</td>
@@ -34,8 +36,8 @@ function PlayerCard(props) {
         {player.teamsData && !!player.teamsData.length &&
           player.teamsData.sort((a, b) => {
             // Calculate points for each team
-            const pointsA = (a.group.won + a.KO.won) * 3 + (a.group.drawn + a.KO.drawn);
-            const pointsB = (b.group.won + b.KO.won) * 3 + (b.group.drawn + b.KO.drawn);
+            const pointsA = (a.group.won + a.KO.won) * 3 + (a.group.drawn + a.KO.drawn + a.KO.PK);
+            const pointsB = (b.group.won + b.KO.won) * 3 + (b.group.drawn + b.KO.drawn + a.KO.PK);
 
             // Calculate goal difference for each team
             const goalDifferenceA = (a.group.GF + a.KO.GF) - (a.group.GA + a.KO.GA);
@@ -64,6 +66,7 @@ function PlayerCard(props) {
               <td className='teamName'>{team.name}</td>
               <td>{team.played}</td>
               <td>{team.group.won+team.KO.won}</td>
+              <td>{team.KO.PK}</td>
               <td>{team.group.drawn+team.KO.drawn}</td>
               <td>{team.group.lost+team.KO.lost}</td>
               <td>{team.group.GF+team.KO.GF}</td>
@@ -73,7 +76,7 @@ function PlayerCard(props) {
             </tr>
           )
         }
-        { player.wildcardData ?
+        { player.wildcardData &&
           <tr className='wildcard'>
             {api && <img src={api.teams.filter((apiTeam) => apiTeam.id === player.wildcardData[0].apiId)[0].crest}></img>}
             <td className='teamName'>{player.wildcardData[0].name}</td>
@@ -86,18 +89,18 @@ function PlayerCard(props) {
             <td>{(player.wildcardData[0].group.GF+player.wildcardData[0].KO.GF)-(player.wildcardData[0].group.GA+player.wildcardData[0].KO.GA)}</td>
             <td className='points'>{(player.wildcardData[0].group.won+player.wildcardData[0].KO.won*3)+(player.wildcardData[0].group.drawn+player.wildcardData[0].KO.drawn)}</td>
           </tr>
-          :
-          <tr className='emptyRow'>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
+          // :
+          // <tr className='emptyRow'>
+          //   <td>-</td>
+          //   <td>-</td>
+          //   <td>-</td>
+          //   <td>-</td>
+          //   <td>-</td>
+          //   <td>-</td>
+          //   <td>-</td>
+          //   <td>-</td>
+          //   <td>-</td>
+          // </tr>
         }
       </table>
     </StyledPlayerCard>

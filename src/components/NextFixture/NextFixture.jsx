@@ -9,11 +9,12 @@ function NextFixture(props) {
 
   useEffect(() => {
     getData({
-      route: 'api/v4/competitions/EC/matches?status=IN_PLAY,SCHEDULED'
+      route: 'api/v4/competitions/EC/matches?status=IN_PLAY,PAUSED,SCHEDULED'
     })
   }, [])
 
   useEffect(() => {
+    data && console.log('currentGame', data.matches[0])
     if (data) {
       if (data.matches[0].matchday === 3) {
         setNextFixture('matchday 3')
