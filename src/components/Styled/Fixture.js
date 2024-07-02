@@ -78,6 +78,11 @@ const Fixture = styled.div`
         line-height: 16px;
       }
 
+      & span {
+        font-size: 12px;
+        vertical-align: super;
+        text-align: left;
+      }
     }
   }
 `;

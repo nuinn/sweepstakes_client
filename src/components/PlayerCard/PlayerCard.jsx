@@ -31,7 +31,7 @@ function PlayerCard(props) {
           <td>{player.teamsData.reduce((sum, team) => sum + team.group.GF + team.KO.GF, 0)}</td>
           <td>{player.teamsData.reduce((sum, team) => sum + team.group.GA + team.KO.GA, 0)}</td>
           <td>{(player.teamsData.reduce((sum, team) => sum + team.group.GF + team.KO.GF, 0))-(player.teamsData.reduce((sum, team) => sum + team.group.GA + team.KO.GA, 0))}</td>
-          <td className='points'>{(player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn, 0))}</td>
+          <td className='points'>{(player.teamsData.reduce((sum, team) => sum + team.group.won + team.KO.won, 0)*3)+(player.teamsData.reduce((sum, team) => sum + team.group.drawn + team.KO.drawn + team.KO.PK, 0))}</td>
         </tr>
         {player.teamsData && !!player.teamsData.length &&
           player.teamsData.sort((a, b) => {
@@ -72,7 +72,7 @@ function PlayerCard(props) {
               <td>{team.group.GF+team.KO.GF}</td>
               <td>{team.group.GA+team.KO.GA}</td>
               <td>{(team.group.GF+team.KO.GF)-(team.group.GA+team.KO.GA)}</td>
-              <td className='points'>{((team.group.won+team.KO.won)*3)+(team.group.drawn+team.KO.drawn)}</td>
+              <td className='points'>{((team.group.won+team.KO.won)*3)+(team.group.drawn+team.KO.drawn+team.KO.PK)}</td>
             </tr>
           )
         }

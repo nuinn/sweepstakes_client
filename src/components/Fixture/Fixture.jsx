@@ -15,10 +15,10 @@ function Fixture(props) {
     })
   }, [])
 
-  // useEffect(() => {
-  //   data && console.log('players', data.filter((player) => player.teams.includes(fixture.homeTeam.id.toString())))
-  //   console.log('fixture', fixture)
-  // }, [data])
+  useEffect(() => {
+    // data && console.log('players', data.filter((player) => player.teams.includes(fixture.homeTeam.id.toString())))
+    fixture.score.duration === "PENALTY_SHOOTOUT" && console.log('fixture.score.penalties', fixture.score)
+  }, [data])
 
   return (
     <>
@@ -47,15 +47,17 @@ function Fixture(props) {
                 <div className="pensContainer"></div>
                 <div className="finalScore">
                   <p className={ fixture.status === "IN_PLAY" || fixture.status === "PAUSED" ? 'score inPlay' : 'score'}>
-                    {`${fixture.score.fullTime.homeTeam - fixture.score.penalties.homeTeam}${fixture.score.winner === "HOME_TEAM" ? '*' : ''}`}
+                    {fixture.score.fullTime.home - fixture.score.penalties.home}
+                    {fixture.score.winner === "HOME_TEAM" && <span>*</span>}
                   </p>
                   <p className={ fixture.status === "IN_PLAY" || fixture.status === "PAUSED" ? 'vs inPlay' : 'vs'}>vs</p>
                   <p className={ fixture.status === "IN_PLAY" || fixture.status === "PAUSED" ? 'score inPlay' : 'score'}>
-                    {`${fixture.score.fullTime.awayTeam - fixture.score.penalties.awayTeam}${fixture.score.winner === "AWAY_TEAM" ? '*' : ''}`}
+                    {fixture.score.fullTime.away - fixture.score.penalties.away}
+                    {fixture.score.winner === "AWAY_TEAM" && <span>*</span>}
                   </p>
                 </div>
                 <div className="pensContainer">
-                  <p className='pens'>{`(${fixture.score.penalties.homeTeam} - ${fixture.score.penalties.awayTeam})`}</p>
+                  <p className='pens'>{`(${fixture.score.penalties.home} - ${fixture.score.penalties.away})`}</p>
                 </div>
               </>
               :
