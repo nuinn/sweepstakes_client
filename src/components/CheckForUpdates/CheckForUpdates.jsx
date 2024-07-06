@@ -39,13 +39,14 @@ export default function CheckForUpdates(props) {
       }
       setUnregisteredMatches(unregisteredMatchesData)
     }
+    console.log('unregisteredMatches2', unregisteredMatches)
   }, [completedMatches])
 
 
 
   return (
     <>
-      { unregisteredMatches &&
+      { unregisteredMatches && !!unregisteredMatches.length &&
       <Update
         league={league}
         unregisteredMatches={unregisteredMatches}
