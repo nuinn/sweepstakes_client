@@ -34,7 +34,7 @@ export default function Fixtures() {
       { isLoading && <Spinner />}
       {data &&
         data.matches
-          .filter((match) => match.stage.includes("GROUP") || match.stage.includes("LAST_16") || match.stage.includes("QUARTER_FINALS"))
+          // .filter((match) => match.stage.includes("GROUP") || match.stage.includes("LAST_16") || match.stage.includes("QUARTER_FINALS"))
           .map((match) =>
           <Fixture
             key={match.id}
