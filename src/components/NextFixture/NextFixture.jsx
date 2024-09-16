@@ -9,18 +9,18 @@ function NextFixture(props) {
 
   useEffect(() => {
     getData({
-      route: 'api/v4/competitions/EC/matches?status=IN_PLAY,PAUSED,SCHEDULED'
+      route: 'api/v4/competitions/EC/matches?status=IN_PLAY,PAUSED,SCHEDULED,FINISHED'
     })
   }, [])
 
   useEffect(() => {
-    data && console.log('currentGame', data.matches[0])
-    if (data) {
+    data && console.log('currentGame', data)
+    if (data?.matches.length) {
       if (data.matches[0].matchday === 3) {
         setNextFixture('matchday 3')
       }
       else {
-        data && setNextFixture(data.matches[0])
+        data && setNextFixture(data.matches.reverse()[0])
       }
     }
   }, [data])

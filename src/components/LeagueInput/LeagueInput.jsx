@@ -52,6 +52,7 @@ function LeagueInput(props) {
 
   useEffect(() => {
     if (data) {
+      console.log('league data', data)
       localStorage.data = JSON.stringify(data)
       setLeague(data)
       window.location.reload()

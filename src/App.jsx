@@ -9,6 +9,7 @@ import League from './components/League/League.jsx'
 import NextFixture from './components/NextFixture/NextFixture.jsx'
 import CheckForUpdates from './components/CheckForUpdates/CheckForUpdates.jsx'
 import StyledWrap from './components/Styled/Wrap.js'
+import Welcome from './components/Welcome/Welcome.jsx'
 import './App.css'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <StyledWrap>
+      <Welcome />
       {!localStorage.data &&
        <LeagueInput league={league} setLeague={setLeague}/>
       }

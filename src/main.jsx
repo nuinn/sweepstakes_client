@@ -6,10 +6,10 @@ import AppRouter from './AppRouter.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
+  <React.StrictMode>
   <BrowserRouter>
     <Navbar />
     <AppRouter />
   </BrowserRouter>
-  // </React.StrictMode>,
+  </React.StrictMode>
 )
