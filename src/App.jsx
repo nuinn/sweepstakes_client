@@ -30,9 +30,11 @@ function App() {
 
   return (
     <StyledWrap>
-      <Welcome />
       {!localStorage.data &&
-       <LeagueInput league={league} setLeague={setLeague}/>
+        <>
+          <Welcome />
+          <LeagueInput league={league} setLeague={setLeague}/>
+        </>
       }
       {!!league && league.open &&
         <>
@@ -46,7 +48,7 @@ function App() {
       {isLoading && <Spinner />}
       {!!league && league.live && data &&
         <>
-          <CheckForUpdates league={league} setLeague={setLeague} />
+          {/* <CheckForUpdates league={league} setLeague={setLeague} /> */}
           <NextFixture leagueId={league._id} />
           <League leagueId={league._id} />
         </>
