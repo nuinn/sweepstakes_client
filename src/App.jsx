@@ -36,17 +36,17 @@ function App() {
           <LeagueInput league={league} setLeague={setLeague}/>
         </>
       }
-      {!!league && league.open &&
+      {localStorage.data && !!league && league.open &&
         <>
           <PlayerHandler leagueId ={league._id} />
           <FinaliseLeague _id={league._id} setLeague={setLeague}/>
         </>
       }
-      {!!league && !league.open && !league.live &&
+      {localStorage.data && !!league && !league.open && !league.live &&
         <Draw players={league.players} leagueId={league._id}/>
       }
       {isLoading && <Spinner />}
-      {!!league && league.live && data &&
+      {localStorage.data && !!league && league.live && data &&
         <>
           {/* <CheckForUpdates league={league} setLeague={setLeague} /> */}
           <NextFixture leagueId={league._id} />

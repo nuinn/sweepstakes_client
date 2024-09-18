@@ -54,6 +54,10 @@ const StyledNavbar = styled.div`
 
 export default function Navbar() {
   const navigate = useNavigate()
+  function logout() {
+    delete localStorage.data;
+    navigate('/');
+  }
 
   return (
     <StyledNavbar>
@@ -65,6 +69,7 @@ export default function Navbar() {
         <p onClick={ () => navigate('/players') }>Players</p>
         <p onClick={ () => navigate('/fixtures') }>Fixtures</p>
         <p onClick={ () => navigate('/rules') }>Rules</p>
+        <p onClick={ logout }>Logout</p>
       </div>
     </StyledNavbar>
   )
